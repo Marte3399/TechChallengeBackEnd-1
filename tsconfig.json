@@ -2,12 +2,16 @@
    "compilerOptions": {
      "target": "es5",
      "module": "commonjs",
+     "baseUrl": "./",                                  /* Specify the base directory to resolve non-relative module names. */
+     "paths": {
+      "@/*": ["./src/*"]
+     },    
      "lib": [
        "es6"
      ], 
      "allowJs": true,
      "outDir": "build",
-     "rootDir": "src",
+     "rootDir": "./src",
      "strict": true,
      "noImplicitAny": true,
      "strictPropertyInitialization": false,
