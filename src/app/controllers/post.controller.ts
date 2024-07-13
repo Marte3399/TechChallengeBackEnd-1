@@ -6,8 +6,7 @@ import { AppDataSource } from '../../database/data-source';
 import { FindOneOptions, QueryRunner } from 'typeorm';
 
 
-export class PostController {
-
+export class PostController {  
   async read(req: Request, res: Response) {
     try {
       const postRepository = AppDataSource.getRepository(Post);
@@ -16,7 +15,7 @@ export class PostController {
     } 
     catch (error) {
       console.log(error);
-      return res.status(500).json({ message: 'Internal Server Erros' })
+      return res.status(500).json({ message: 'Internal Server Error' })
     }
   }
   async readId(req: Request, res: Response) {
@@ -64,7 +63,7 @@ export class PostController {
     } 
     catch (error) {
       console.log(error);
-      return res.status(500).json({ message: 'Internal Server Erros' })
+      return res.status(500).json({ message: 'Internal Server Error' })
     }
   }
 
@@ -85,10 +84,20 @@ export class PostController {
     } 
     catch (error) {
       console.log(error);
-      return res.status(500).json({ message: 'Internal Server Erros' })
+      return res.status(500).json({ message: 'Internal Server Error' })
     }
   }
-
+  async readAdmin(req: Request, res: Response) {
+    try {
+      const postRepository = AppDataSource.getRepository(Post);
+      const posts = await postRepository.find();
+      res.json(posts);
+    } 
+    catch (error) {
+      console.log(error);
+      return res.status(500).json({ message: 'Internal Server Error' })
+    }
+  }
   async delete(req: Request, res: Response) {
     try {
       const { id } = req.params;
@@ -105,15 +114,14 @@ export class PostController {
     }
     catch (error) {
       console.log(error);
-      return res.status(500).json({ message: 'Internal Server Erros' })
+      return res.status(500).json({ message: 'Internal Server Error' })
     }
   }
 
   async readAll(req: Request, res: Response) {
     try {
         const keyword = req.params.keyword.toLowerCase()
-        const postRepository = AppDataSource.getRepository(Post);
-        
+        const postRepository = AppDataSource.getRepository(Post);        
         // Consulta usando createQueryBuilder para buscar por 'title' ou 'description' ou 'author' que contenham a palavra-chave
         const posts = await postRepository        
            .createQueryBuilder('post')
