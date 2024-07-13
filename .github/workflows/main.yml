@@ -38,7 +38,7 @@ jobs:
           docker push $DOCKER_USERNAME/techpost:latest
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --save-dev jest ts-jest typescript @types/jest
     
       - name: Verify Jest installation
         run: npx jest --version
