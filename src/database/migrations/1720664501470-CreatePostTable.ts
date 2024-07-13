@@ -24,6 +24,12 @@ export class CreatePostTable1720664501470 implements MigrationInterface {
                         type: 'varchar',
                         length: '2000',
                         isNullable: false
+                    },
+                    {
+                        name: 'author',
+                        type: 'varchar',
+                        length: '100',
+                        isNullable: false
                     }
                 ]
             })

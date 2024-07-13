@@ -3,7 +3,7 @@ import Post from '../entities/post.entity';
 import IPost from '../interfaces/IPost';
 import { postRepository } from '../repositories/post.repository';
 import { AppDataSource } from '../../database/data-source';
-import { FindOneOptions } from 'typeorm';
+import { FindOneOptions, QueryRunner } from 'typeorm';
 
 
 export class PostController {
@@ -19,12 +19,29 @@ export class PostController {
       return res.status(500).json({ message: 'Internal Server Erros' })
     }
   }
-
+  async readId(req: Request, res: Response) {
+    try {
+      const postId = parseInt(req.params.id); // Supondo que o ID está sendo passado como parâmetro na rota
+  
+      const postRepository = AppDataSource.getRepository(Post);
+      const post = await postRepository.findOne({ where: { id: postId } });
+  
+      if (!post) {
+        return res.status(404).json({ message: 'Post not found' });
+      }
+  
+      res.json(post);
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ message: 'Internal Server Error' });
+    }
+  }
   async create(req: Request, res: Response) {
     //criar post
     const {
       title,
-      description
+      description,
+      author
     } = req.body
     if (!title) {
       return res.status(400).json({ mensagem: 'The title is mandatory' })
@@ -36,7 +53,8 @@ export class PostController {
     try {
       const newPost = postRepository.create({
         title,
-        description
+        description,
+        author
       })
 
       await postRepository.save(newPost)
@@ -88,6 +106,24 @@ export class PostController {
     catch (error) {
       console.log(error);
       return res.status(500).json({ message: 'Internal Server Erros' })
+    }
+  }
+
+  async readAll(req: Request, res: Response) {
+    try {
+        const keyword = req.params.keyword.toLowerCase()
+        const postRepository = AppDataSource.getRepository(Post);
+        
+        // Consulta usando createQueryBuilder para buscar por 'title' ou 'description' ou 'author' que contenham a palavra-chave
+        const posts = await postRepository        
+           .createQueryBuilder('post')
+           .where('LOWER(post.title) LIKE :keyword OR LOWER(post.description) LIKE :keyword OR LOWER(post.author) LIKE :keyword', { keyword: `%${keyword}%` })
+           .getMany();
+
+        res.json(posts);        
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Internal Server Error' });
     }
   }
 

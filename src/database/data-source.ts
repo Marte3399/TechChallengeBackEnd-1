@@ -18,24 +18,24 @@ import Post from "../app/entities/post.entity";
 //    subscribers: [],
 //})
 
-//export const AppDataSource = new DataSource({
-//    type: "postgres",
-//    host: "localhost",
-//    port: 5432,
-//    username: "postgres",
-//    password: "postgres",
-//    database: "postgres",
-//    synchronize: true,
-//    logging: false,
-//    entities: [Post],
-//    migrations: [CreatePostTable1720664501470],
-//    subscribers: [],
-//})
+export const AppDataSource = new DataSource({
+    type: "postgres",
+    host: "localhost",
+    port: 5432,
+    username: "postgres",
+    password: "postgres",
+    database: "postgres",
+    synchronize: true,
+    logging: false,
+    entities: [Post],
+    migrations: [CreatePostTable1720664501470],
+    subscribers: [],
+})
 
 //export const AppDataSource = new DataSource({
 //    type: "mongodb",
 //    host: "localhost",
-//    port: 3010,
+//    port: 27017,
 //    username: "marterm35",
 //    password: "UnlmwQiuMsE9WPha",
 //    database: "tech-post",
@@ -47,14 +47,14 @@ import Post from "../app/entities/post.entity";
 //})
 
 
-export const AppDataSource = new DataSource({
-    type: "mongodb",
-    url: "mongodb+srv://marterm35:UnlmwQiuMsE9WPha@tech-post.mn9ecth.mongodb.net/techpost?retryWrites=true&w=majority&appName=tech-post",
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    synchronize: true,
-    logging: false,
-    entities: [Post],
-    migrations: [CreatePostTable1720664501470],
-    subscribers: [],
-});
+//export const AppDataSource = new DataSource({
+//    type: "mongodb",
+//    url: "mongodb+srv://marterm35:UnlmwQiuMsE9WPha@tech-post.mn9ecth.mongodb.net/techpost?retryWrites=true&w=majority&appName=tech-post",
+//    useNewUrlParser: true,
+//    useUnifiedTopology: true,
+//    synchronize: true,
+//    logging: false,
+//    entities: [Post],
+//    migrations: [CreatePostTable1720664501470],
+//    subscribers: [],
+//});
