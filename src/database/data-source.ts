@@ -46,6 +46,7 @@ import Post from "../app/entities/post.entity";
 //    subscribers: [],
 //})
 
+
 export const AppDataSource = new DataSource({
     type: "mongodb",
     url: "mongodb+srv://marterm35:UnlmwQiuMsE9WPha@tech-post.mn9ecth.mongodb.net/techpost?retryWrites=true&w=majority&appName=tech-post",
