@@ -19,7 +19,7 @@ describe('PostController', () => {
           author: 'Test Author 1',
         })
       );
-      const response = await supertest(app).get('/post');
+      const response = await supertest(app).get('/posts');
       expect(response.status).toBe(200);
     });
   });
@@ -34,7 +34,7 @@ describe('PostController', () => {
         })
       );
 
-      const response = await supertest(app).get(`/post/${newPost.id}`);
+      const response = await supertest(app).get(`/posts/${newPost.id}`);
 
       expect(response.status).toBe(200);
       expect(response.body).toEqual(newPost);
@@ -51,7 +51,7 @@ describe('PostController', () => {
         });
 
 
-      const response = await supertest(app).post(`/post`).send(newPost);
+      const response = await supertest(app).post(`/posts`).send(newPost);
 
       expect(response.status).toBe(201);
     });
@@ -72,7 +72,7 @@ describe('PostController', () => {
         description: 'Updated Description of Test Post 3',
         author: 'Updated Test Author 3',
       };
-      const response = await supertest(app).put(`/post/${newPost.id}`).send(updatedData);
+      const response = await supertest(app).put(`/posts/${newPost.id}`).send(updatedData);
 
       expect(response.status).toBe(200);
     });
@@ -88,7 +88,7 @@ describe('PostController', () => {
         })
       );
 
-      const response = await supertest(app).delete(`/post/${newPost.id}`);
+      const response = await supertest(app).delete(`/posts/${newPost.id}`);
       expect(response.status).toBe(200);
       const deletedPost = await postRepository.findOne({ where: { id: newPost.id } });
       expect(deletedPost).toBeNull();
