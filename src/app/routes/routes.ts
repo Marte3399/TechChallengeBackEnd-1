@@ -4,18 +4,18 @@ import { PostController } from '../controllers/post.controller';
 
 const router = Router();
 
-router.get('/post', new PostController().read);
+router.get('/posts', new PostController().read);
 
-router.get('/post/Admin', new PostController().readAdmin);
+router.get('/posts/Admin', new PostController().readAdmin);
 
-router.get('/post/:id', new PostController().readId);
+router.get('/posts/:id', new PostController().readId);
 
-router.post('/post', new PostController().create);
+router.post('/posts', new PostController().create);
 
-router.put('/post/:id', new PostController().update);
+router.put('/posts/:id', new PostController().update);
 
-router.delete('/post/:id', new PostController().delete);
+router.delete('/posts/:id', new PostController().delete);
 
-router.get('/post/search/:keyword', new PostController().readAll);
+router.get('/posts/search/:keyword', new PostController().readAll);
 
 export default router;

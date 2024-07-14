@@ -12,6 +12,13 @@ describe('PostController', () => {
 
   describe('read', () => {
     it('lista de post', async () => {
+      const newPost = await postRepository.save(
+        postRepository.create({
+          title: 'lista de post',
+          description: 'Description of Test Post 1',
+          author: 'Test Author 1',
+        })
+      );
       const response = await supertest(app).get('/post');
       expect(response.status).toBe(200);
     });
@@ -21,7 +28,7 @@ describe('PostController', () => {
     it('buscar um post', async () => {
       const newPost = await postRepository.save(
         postRepository.create({
-          title: 'Test Post 1',
+          title: 'buscar um post',
           description: 'Description of Test Post 1',
           author: 'Test Author 1',
         })
@@ -54,7 +61,7 @@ describe('PostController', () => {
     it('atualizar post', async () => {
       const newPost = await postRepository.save(
         postRepository.create({
-          title: 'Test Post 1',
+          title: 'update',
           description: 'Description of Test Post 1',
           author: 'Test Author 1',
         })
@@ -75,7 +82,7 @@ describe('PostController', () => {
     it('deletar post', async () => {
       const newPost = await postRepository.save(
         postRepository.create({
-          title: 'Test Post 1',
+          title: 'delete',
           description: 'Description of Test Post 1',
           author: 'Test Author 1',
         })
