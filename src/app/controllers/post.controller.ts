@@ -6,13 +6,13 @@ import { AppDataSource } from '../../database/data-source';
 import { FindOneOptions, QueryRunner } from 'typeorm';
 
 
-export class PostController {  
+export class PostController {
   async read(req: Request, res: Response) {
     try {
       const postRepository = AppDataSource.getRepository(Post);
       const posts = await postRepository.find();
       res.json(posts);
-    } 
+    }
     catch (error) {
       console.log(error);
       return res.status(500).json({ message: 'Internal Server Error' })
@@ -21,14 +21,14 @@ export class PostController {
   async readId(req: Request, res: Response) {
     try {
       const postId = parseInt(req.params.id); // Supondo que o ID está sendo passado como parâmetro na rota
-  
+
       const postRepository = AppDataSource.getRepository(Post);
       const post = await postRepository.findOne({ where: { id: postId } });
-  
+
       if (!post) {
         return res.status(404).json({ message: 'Post not found' });
       }
-  
+
       res.json(post);
     } catch (error) {
       console.log(error);
@@ -60,7 +60,7 @@ export class PostController {
 
       return res.status(201).json(newPost)
       console.log(newPost)
-    } 
+    }
     catch (error) {
       console.log(error);
       return res.status(500).json({ message: 'Internal Server Error' })
@@ -81,7 +81,7 @@ export class PostController {
       postRepository.merge(post, req.body);
       const resultado = await postRepository.save(post);
       res.json(resultado);
-    } 
+    }
     catch (error) {
       console.log(error);
       return res.status(500).json({ message: 'Internal Server Error' })
@@ -92,7 +92,7 @@ export class PostController {
       const postRepository = AppDataSource.getRepository(Post);
       const posts = await postRepository.find();
       res.json(posts);
-    } 
+    }
     catch (error) {
       console.log(error);
       return res.status(500).json({ message: 'Internal Server Error' })
@@ -120,18 +120,18 @@ export class PostController {
 
   async readAll(req: Request, res: Response) {
     try {
-        const keyword = req.params.keyword.toLowerCase()
-        const postRepository = AppDataSource.getRepository(Post);        
-        // Consulta usando createQueryBuilder para buscar por 'title' ou 'description' ou 'author' que contenham a palavra-chave
-        const posts = await postRepository        
-           .createQueryBuilder('post')
-           .where('LOWER(post.title) LIKE :keyword OR LOWER(post.description) LIKE :keyword OR LOWER(post.author) LIKE :keyword', { keyword: `%${keyword}%` })
-           .getMany();
+      const keyword = req.params.keyword.toLowerCase()
+      const postRepository = AppDataSource.getRepository(Post);
+      // Consulta usando createQueryBuilder para buscar por 'title' ou 'description' ou 'author' que contenham a palavra-chave
+      const posts = await postRepository
+        .createQueryBuilder('post')
+        .where('LOWER(post.title) LIKE :keyword OR LOWER(post.description) LIKE :keyword OR LOWER(post.author) LIKE :keyword', { keyword: `%${keyword}%` })
+        .getMany();
 
-        res.json(posts);        
+      res.json(posts);
     } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: 'Internal Server Error' });
+      console.error(error);
+      return res.status(500).json({ message: 'Internal Server Error' });
     }
   }
 

@@ -5,8 +5,6 @@ import { Entity, Column, ObjectId, PrimaryGeneratedColumn, ObjectIdColumn, Befor
 export class Post {
     @PrimaryGeneratedColumn('increment')
     id: number;
-    //@ObjectIdColumn()
-    //id: number;
     
     @Column('varchar', { length: 100, nullable: false })
     title: string;

@@ -1,6 +1,6 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
-import {CreatePostTable1720664501470} from './migrations/1720664501470-CreatePostTable';
+import { CreatePostTable1720664501470 } from './migrations/1720664501470-CreatePostTable';
 import Post from "../app/entities/post.entity";
 
 

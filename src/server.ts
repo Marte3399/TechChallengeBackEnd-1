@@ -12,9 +12,20 @@ app.use(express.json());
 
 app.use(routers);
 
-AppDataSource.initialize().then(async () => {
-    console.log('Database OK');
-    app.listen(3010, () => {
-        console.log('Server started on port 3010');
-    })
-})
+//AppDataSource.initialize().then(async () => {
+//    console.log('Database OK');
+//    app.listen(3010, () => {
+//        console.log('Server started on port 3010');
+//    })
+//})
+
+export async function initializeApp() {
+    await AppDataSource.initialize();
+    console.log('Data Source has been initialized!');
+    const app = express();
+    // ...
+    return app;
+  }
+
+
+export default app;
