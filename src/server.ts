@@ -19,23 +19,23 @@ app.use(routers);
       console.log('Data Source has been initialized!');
       return app;
     }
-  initializeApp().then(() => {
-    console.log('Database OK');
-    //const config = new DocumentBuilder()
-    //.setTitle('TechchallengBackEnd')
-    //.setDescription('The TechchallengBackEnd API description')
-    //.setVersion('1.0')
-    //.addTag('posts')
-    //.build();
-    //
-    //const document = SwaggerModule.createDocument(app, config);
-    //SwaggerModule.setup('api', app, document);
-    app.listen(3010, () => {
-        console.log('Server started on port 3010');
-    })
-  }).catch(error => {
-      console.error('Error during initialization:', error);
-  });
+  //initializeApp().then(() => {
+  //  console.log('Database OK');
+  //  //const config = new DocumentBuilder()
+  //  //.setTitle('TechchallengBackEnd')
+  //  //.setDescription('The TechchallengBackEnd API description')
+  //  //.setVersion('1.0')
+  //  //.addTag('posts')
+  //  //.build();
+  //  //
+  //  //const document = SwaggerModule.createDocument(app, config);
+  //  //SwaggerModule.setup('api', app, document);
+  //  app.listen(3010, () => {
+  //      console.log('Server started on port 3010');
+  //  })
+  //}).catch(error => {
+  //    console.error('Error during initialization:', error);
+  //});
   export async function finalizedApp() {
     await AppDataSource.destroy();
     console.log('Data Source has been finalized!');

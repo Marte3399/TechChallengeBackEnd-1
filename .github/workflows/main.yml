@@ -37,12 +37,6 @@ jobs:
           docker build -t $DOCKER_USERNAME/techpost:latest --build-arg MONGO_URI=${{ secrets.DATABASE_URL }} --build-arg JWT_SECRET=${{ secrets.JWT_SECRET }} .
           docker push $DOCKER_USERNAME/techpost:latest
 
-      - name: Install dependencies
-        run: npm install --save-dev jest ts-jest typescript @types/jest
-    
-      - name: Verify Jest installation
-        run: npx jest --version
-
       - name: Run tests
         env:
           POSTGRES_DB: postgres
