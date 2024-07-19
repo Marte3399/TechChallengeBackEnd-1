@@ -2,7 +2,8 @@ import "reflect-metadata"
 import { DataSource } from "typeorm"
 import { CreatePostTable1720664501470 } from './migrations/1720664501470-CreatePostTable';
 import Post from "../app/entities/post.entity";
-
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 //export const AppDataSource = new DataSource({
 //    type: "mysql",
@@ -19,12 +20,12 @@ import Post from "../app/entities/post.entity";
 //})
 
 export const AppDataSource = new DataSource({
-    type: "postgres",
-    host: "localhost",
-    port: 5432,
-    username: "postgres",
-    password: "postgres",
-    database: "postgres",
+    type: process.env.DATABASE_TYPE as any,
+    host: process.env.DATABASE_HOST,
+    port: Number(process.env.DATABASE_PORT),
+    username: process.env.DATABASE_USER,
+    password: process.env.DATABASE_PASSWORD,
+    database: process.env.DATABASE_NAME,
     synchronize: true,
     logging: false,
     entities: [Post],

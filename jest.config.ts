@@ -1,17 +1,14 @@
 module.exports = {
     preset: 'ts-jest',
-    testEnvironment: 'node',
+    testEnvironment: 'node',    
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
     transform: {
-        '^.+\\.(ts|tsx)$': 'ts-jest',
+        '^.+\\.(ts|tsx)$': ['ts-jest',{tsconfig: 'tsconfig.json',}]
     },
+    globalTeardown: './jest.teardown.ts',
     testMatch: ['**/?(*.)+(spec|test).ts?(x)'],
-    globals: {
-        'ts-jest': {
-            tsconfig: 'tsconfig.json',
-        },
-    },
     transformIgnorePatterns: [
         '/node_modules/(?!typeorm)',
       ],
+
 };
