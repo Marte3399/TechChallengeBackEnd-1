@@ -1,25 +1,14 @@
-FROM node
-
-WORKDIR /src/app
-
-COPY package.json ./
-
+# .......Development Stage.......
+FROM node:20-alpine as development
+# Define o diretorio do container
+WORKDIR /app
+# Copiar os arquivos necessarios para iniciar uma aplicacao nodejs
+COPY package.json package-lock.json ./
+# Instala dependencias
 RUN npm install
-
+RUN npm install -g ts-node
+# Copia arquivos locais para o container
 COPY . .
+# Build da app
+RUN npm run build
 
-ARG MONG_URI
-ARG JWT_SECRET
-
-ENV MONG_URI=$MONG_URI
-ENV JWT_SECRET=$JWT_SECRET
-
-RUN echo "MONG_URI=${MONG_URI}" > .env
-RUN echo "PORT=3010" > .env
-RUN echo "JWT_SECRET=${JWT_SECRET}" > .env
-
-RUN npm i -g pnpm
-
-EXPOSE 3010
-
-CMD ["node", "build/server"]
