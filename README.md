@@ -1,10 +1,24 @@
 # Tech Challenge Back-End FIAP
 
-O PROBLEMA
+## Docker
+
+Para iniciar o container
+
+```bash
+  docker-compose up --build 
+```
+Para finalizar o container
+
+```bash
+  docker-compose down
+```
+
+
+## Problema
 
 Atualmente, a maior parte de professores e professoras da rede pública de educação não têm plataformas onde postar suas aulas e transmitir conhecimento para alunos e alunas de forma prática, centralizada e tecnológica. Para solucionar esse problema, nós utilizamos os conhecimentos adquiridos na última fase para auxiliar a nossa comunidade com a criação de uma aplicação de blogging dinâmico, utilizando a plataforma OutSystems. A plataforma foi um sucesso e, agora, nossa aplicação vai escalar para um panorama nacional. Portanto, precisaremos refatorar nosso Back-end, utilizando a plataforma de desenvolvimento node.js, e precisaremos persistir esses dados em um banco de dados, seja ele SQL ou NoSQL, de acordo com a decisão do grupo.
 
-REQUISITOS FUNCIONAIS
+## Requisitos Funcionais
 
 Os seguintes endpoints REST serão implementados para a aplicação de blogging: 
 
@@ -30,7 +44,7 @@ GET /posts/search - Busca de Posts:
 -Este endpoint permitirá a busca de posts por palavras-chave. Os usuários poderão passar uma query string com o termo de busca e o sistema retornará uma lista de posts que contêm esse termo 
  no título ou conteúdo. 
 
-REQUISITOS TÉCNICOS 
+## Requisitos Tecnicos
 
 Back-end em Node.js: 
 -Implementação do servidor usando Node.js. 
