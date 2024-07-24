@@ -20,7 +20,6 @@ export class PostController {
   }
   async readAll(req: Request, res: Response) {
     try {
-      //const keyword = req.params.keyword.toLowerCase()
       const keyword = (req.query.keyword as string)?.toLowerCase() || '';
       const postRepository = AppDataSource.getRepository(Post);
       // Consulta usando createQueryBuilder para buscar por 'title' ou 'description' ou 'author' que contenham a palavra-chave
