@@ -10,6 +10,8 @@ const router = Router();
 router.get('/login', new UserController(new UserRepository()).login);
 router.get('/teste', authMiddleware,new UserController(new UserRepository()).teste);
 
+router.get('/posts/search', new PostController().readAll);
+
 router.get('/posts', new PostController().read);
 
 router.get('/posts/Admin', new PostController().readAdmin);
@@ -22,6 +24,6 @@ router.put('/posts/:id', new PostController().update);
 
 router.delete('/posts/:id', new PostController().delete);
 
-router.get('/posts/search/:keyword', new PostController().readAll);
+
 
 export default router;

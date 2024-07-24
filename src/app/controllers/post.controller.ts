@@ -18,6 +18,23 @@ export class PostController {
       return res.status(500).json({ message: 'Internal Server Error' })
     }
   }
+  async readAll(req: Request, res: Response) {
+    try {
+      //const keyword = req.params.keyword.toLowerCase()
+      const keyword = (req.query.keyword as string)?.toLowerCase() || '';
+      const postRepository = AppDataSource.getRepository(Post);
+      // Consulta usando createQueryBuilder para buscar por 'title' ou 'description' ou 'author' que contenham a palavra-chave
+      const posts = await postRepository
+        .createQueryBuilder('post')
+        .where('LOWER(post.title) LIKE :keyword OR LOWER(post.description) LIKE :keyword OR LOWER(post.author) LIKE :keyword', { keyword: `%${keyword}%` })
+        .getMany();
+
+      res.json(posts);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: 'Internal Server Error' });
+    }
+  }
   async readId(req: Request, res: Response) {
     try {
       const postId = parseInt(req.params.id); // Supondo que o ID está sendo passado como parâmetro na rota
@@ -115,23 +132,6 @@ export class PostController {
     catch (error) {
       console.log(error);
       return res.status(500).json({ message: 'Internal Server Error' })
-    }
-  }
-
-  async readAll(req: Request, res: Response) {
-    try {
-      const keyword = req.params.keyword.toLowerCase()
-      const postRepository = AppDataSource.getRepository(Post);
-      // Consulta usando createQueryBuilder para buscar por 'title' ou 'description' ou 'author' que contenham a palavra-chave
-      const posts = await postRepository
-        .createQueryBuilder('post')
-        .where('LOWER(post.title) LIKE :keyword OR LOWER(post.description) LIKE :keyword OR LOWER(post.author) LIKE :keyword', { keyword: `%${keyword}%` })
-        .getMany();
-
-      res.json(posts);
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ message: 'Internal Server Error' });
     }
   }
 

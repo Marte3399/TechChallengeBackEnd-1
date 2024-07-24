@@ -1,7 +1,14 @@
 import { postRepository } from '../repositories/post.repository';
 import supertest from 'supertest';
-import app from '../../server';
+import app, { finalizedApp, initializeApp } from '../../server';
 
+beforeAll(async () => {
+  await initializeApp();
+});
+
+afterAll(async () => {
+  await finalizedApp();
+});
 
 describe('PostController', () => {
   // Run your tests here
