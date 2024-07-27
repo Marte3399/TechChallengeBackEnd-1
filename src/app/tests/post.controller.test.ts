@@ -86,7 +86,7 @@ describe('PostController', () => {
   });
 
   describe('update', () => {
-    it('Atualziar um post com sucesso', async () => {
+    it('Atualizar um post com sucesso', async () => {
         const newPost = await repository.createPost({
             title: 'atualizar um post',
             description: 'Description of Test Post 1',
@@ -103,7 +103,7 @@ describe('PostController', () => {
       expect(response.status).toBe(200);
     });
 
-    it('Atualziar um post sem titulo', async () => {
+    it('Atualizar um post sem titulo', async () => {
       const updatedData = {
         description: 'Updated Description of Test Post 3',
         author: 'Updated Test Author 3',
@@ -112,7 +112,7 @@ describe('PostController', () => {
 
       expect(response.status).toBe(400);
     });
-    it('Atualziar um post sem descricao', async () => {
+    it('Atualizar um post sem descricao', async () => {
         const updatedData = {
           title: 'Titulo',
           author: 'Updated Test Author 3',

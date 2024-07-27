@@ -77,15 +77,10 @@
       },
       "post": {
         "description": "Criar um post",
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+             "bearerAuth": []
+          }],
         "responses": {
           "201": {
             "description": "Created"
@@ -125,15 +120,10 @@
     "/posts/admin": {
       "get": {
         "description": "Buscar lista de todos os posts criado pelo usuario",
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+             "bearerAuth": []
+          }],
         "responses": {
           "200": {
             "description": "OK"
@@ -205,18 +195,15 @@
       },
       "put": {
         "description": "Atualizar um post",
+        "security": [
+          {
+             "bearerAuth": []
+          }],
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Authorization",
-            "in": "header",
             "schema": {
               "type": "string"
             }
@@ -262,18 +249,15 @@
       },
       "delete": {
         "description": "Deleter um post pelo id",
+        "security": [
+          {
+             "bearerAuth": []
+          }],
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Authorization",
-            "in": "header",
             "schema": {
               "type": "string"
             }
