@@ -9,28 +9,15 @@ services:
   depends_on:
       - db
   ports:
-   - 3010:3010
+   - 4000:4000
   command: npm run dev
- app:
-    build: .
-    ports:
-      - "3010:3010"
-    environment:
-      POSTGRES_URI: postgres://user:password@postgres:5432/postgres
-      JWT_SECRET: abc
- postgres:
-    image: postgres:13
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
-    ports:
-      - "5432:5432" 
  db:
     image: postgres
     restart: always
     env_file:
       - .env
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - 5432:5432
  adminer:
