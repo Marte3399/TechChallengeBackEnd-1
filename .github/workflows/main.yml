@@ -22,8 +22,6 @@ jobs:
           POSTGRES_PASSWORD: postgres
         ports:
           - 5432:5432
-        volumes:
-          - ./init.sql:/docker-entrypoint-initdb.d/init.sql
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -41,7 +39,10 @@ jobs:
 
       - name: Install dependencies
         run: npm install --save-dev jest ts-jest typescript @types/jest
-    
+        
+      - name: Run migrations
+        run: npm run typeorm migration:run
+
       - name: Verify Jest installation
         run: npx jest --version
 

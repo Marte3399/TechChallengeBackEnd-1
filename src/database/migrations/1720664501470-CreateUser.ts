@@ -1,34 +1,29 @@
+import User from "../../app/entities/user.entity";
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class CreatePostTable1720664501470 implements MigrationInterface {
+export class CreateUser1720664501470 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: 'post',
+                name: 'user',
                 columns: [
                     {
                         name: 'id',
-                        type: 'int',
+                        type: 'serial',
                         isPrimary: true,
                         generationStrategy: 'increment'
                     },
                     {
-                        name: 'title',
+                        name: 'username',
                         type: 'varchar',
                         length: '100',
                         isNullable: false
                     },
                     {
-                        name: 'description',
+                        name: 'password',
                         type: 'varchar',
-                        length: '2000',
-                        isNullable: false
-                    },
-                    {
-                        name: 'author',
-                        type: 'varchar',
-                        length: '100',
+                        length: '200',
                         isNullable: false
                     }
                 ]
@@ -37,7 +32,7 @@ export class CreatePostTable1720664501470 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('post')
+        await queryRunner.dropTable('user')
     }
 
 }
