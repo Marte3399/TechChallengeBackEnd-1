@@ -126,7 +126,7 @@ export class PostController {
   searchPosts = async (req: Request, res: Response) => {
      // #swagger.description = 'Buscar posts por uma palavra'
     try {
-      const keyword = req.query.keyword?.toString()
+      const keyword = req.query.keyword?.toString().toLowerCase()
       if (keyword) {
         const posts = await this.repository.searchInPosts(keyword)
         return res.json(posts);
