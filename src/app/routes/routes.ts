@@ -1,5 +1,4 @@
 import { Router, Request, Response } from 'express';
-import { AppDataSource } from "../../database/data-source";
 import { PostController } from '../controllers/post.controller';
 import { UserController } from '../controllers/user.controller';
 import { UserRepository } from '../repositories/user.repository';

@@ -3,7 +3,6 @@ import { PostRepository } from '../repositories/post.repository';
 import { UserRepository } from '../repositories/user.repository';
 import supertest from 'supertest';
 import app from '../../app';
-import { title } from 'process';
 import { AppDataSource } from '../../database/data-source';
 let token = ""
 beforeAll(async () => {
