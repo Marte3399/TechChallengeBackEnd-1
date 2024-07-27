@@ -11,11 +11,17 @@ export class UserController {
     this.repository = repository;
   }
   login = async(req: Request, res: Response) => {
+     // #swagger.description = 'Autenticar usuario'
     try {
       const { username,password } = req.body
       const user = await this.repository.findUsernameByNameAndPassword(username,password)
-      const token = jwt.sign({ _id: user?.id, username: user?.username },process.env.JWT_KEY as string,{ expiresIn: "1d",});
-      res.json({"token":token});
+      if(user)
+      {
+        const token = jwt.sign({ _id: user?.id, username: user?.username },process.env.JWT_KEY as string,{ expiresIn: "1d",});
+        return res.json({"token":token});
+      }
+      return res.status(404).json({ message: '' })
+      
     } 
     catch (error) {
       console.log(error);

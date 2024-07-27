@@ -3,21 +3,10 @@ import { DataSource } from "typeorm"
 import { CreatePostTable1720664501470 } from './migrations/1720664501470-CreatePostTable';
 import Post from "../app/entities/post.entity";
 import * as dotenv from 'dotenv';
+import { CreateUser1721928477312 } from "./migrations/1721928477312-CreateUser";
+import User from "../app/entities/user.entity";
 dotenv.config();
 
-//export const AppDataSource = new DataSource({
-//    type: "mysql",
-//    host: "localhost",
-//    port: 3306,
-//    username: "root",
-//    password: "123@mudar",
-//    database: "project_post",
-//    synchronize: true,
-//    logging: false,
-//    entities: [Post ],
-//    migrations: [CreatePostTable1720664501470],
-//    subscribers: [],
-//})
 
 export const AppDataSource = new DataSource({
     type: "postgres",
@@ -26,36 +15,9 @@ export const AppDataSource = new DataSource({
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DB,
-    synchronize: true,
+    synchronize: false,
     logging: false,
-    entities: [Post],
-    migrations: [CreatePostTable1720664501470],
+    entities: [__dirname + '/../**/*.entity{.js,.ts}'],
+    //migrations: [CreatePostTable1720664501470,CreateUser1721928477312],
     subscribers: [],
 })
-
-//export const AppDataSource = new DataSource({
-//    type: "mongodb",
-//    host: "localhost",
-//    port: 27017,
-//    username: "marterm35",
-//    password: "UnlmwQiuMsE9WPha",
-//    database: "tech-post",
-//    synchronize: true,
-//    logging: false,
-//    entities: [Post],
-//    migrations: [CreatePostTable1720664501470],
-//    subscribers: [],
-//})
-
-
-//export const AppDataSource = new DataSource({
-//    type: "mongodb",
-//    url: "mongodb+srv://marterm35:UnlmwQiuMsE9WPha@tech-post.mn9ecth.mongodb.net/techpost?retryWrites=true&w=majority&appName=tech-post",
-//    useNewUrlParser: true,
-//    useUnifiedTopology: true,
-//    synchronize: true,
-//    logging: false,
-//    entities: [Post],
-//    migrations: [CreatePostTable1720664501470],
-//    subscribers: [],
-//});

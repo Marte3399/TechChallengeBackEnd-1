@@ -1,30 +1,22 @@
+import User from "../entities/user.entity";
 import IUser from "../interfaces/IUser";
-
-
-const users : IUser[] = [{
-    id:1,
-    username:"user",
-    password:"pass"
-}]
-
+import { AppDataSource } from "../../database/data-source";
 
 export class UserRepository {
-  
-     findUsernameByNameAndPassword = (username: string, password:string): Promise<IUser> => {
-        let user = new Promise<IUser>(function(resolve, reject) {
-            users.find(user=>{
-                if(user.username === username && user.password === password)
-                {
-                    resolve(user)
-                }
-            })
-            reject()
-          });
-          return user
+    private repository = AppDataSource.getRepository(User);
+    findUsernameByNameAndPassword = (username: string, password:string): Promise<IUser | null> => {
+       return this.repository.findOne({ where: { username:username, password:password } });
     }
-  
+
+    insertNewUser = async (username: string, password:string): Promise<IUser> => {
+ 
+        const newPost = this.repository.create({
+            username,
+            password,
+        });
+        return await this.repository.save(newPost);
+     }
   }
 
-  
 
 export default { UserRepository };

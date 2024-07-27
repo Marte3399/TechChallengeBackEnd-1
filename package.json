@@ -10,7 +10,6 @@
       "@types/jsonwebtoken": "^9.0.6",
       "@types/node": "^16.11.10",
       "@types/supertest": "^6.0.2",
-      "@types/swagger-ui-express": "^4.1.6",
       "jest": "^29.7.0",
       "nodemon": "^3.1.4",
       "supertest": "^7.0.0",
@@ -21,6 +20,7 @@
    },
    "dependencies": {
       "@types/bcryptjs": "^2.4.6",
+      "@types/swagger-ui-express": "^4.1.6",
       "bcryptjs": "^2.4.3",
       "body-parser": "^1.20.2",
       "cors": "^2.8.5",
@@ -37,9 +37,8 @@
    "scripts": {
       "build": "tsc",
       "dev": "nodemon --watch src --exec 'ts-node' src/server.ts",
-      "dev:server": "ts-node-dev src/server.ts",
       "start": "node build/server",
-      "test": "jest",
+      "test": "jest --coverage",
       "test:watch": "jest --watch",
       "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
    }

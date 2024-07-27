@@ -1,4 +1,5 @@
-import { Entity, Column, ObjectId, PrimaryGeneratedColumn, ObjectIdColumn, BeforeInsert } from 'typeorm';
+import { Entity, Column, ObjectId, PrimaryGeneratedColumn, ObjectIdColumn, BeforeInsert, ManyToOne } from 'typeorm';
+import User from './user.entity';
 
 
 @Entity('post')
@@ -12,8 +13,9 @@ export class Post {
     @Column('varchar', { length: 2000, nullable: false })
     description: string;
     
-    @Column('varchar', { length: 100, nullable: false })
-    author: string;
+
+    @ManyToOne(() => User, (user) => user.posts)
+    user: User
 
 }
 
